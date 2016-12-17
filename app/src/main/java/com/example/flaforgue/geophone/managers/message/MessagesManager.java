@@ -15,15 +15,15 @@ public class MessagesManager extends Service {
 
     // managers
     private final SmsManager messagesSender = SmsManager.getDefault();
-    private MessagesReceiver messagesReceiver = null;
+    private MessagesHandler messagesHandler = null;
     private DeviceComponentManager deviceComponentManager = null;
 
     IBinder mBinder = (IBinder) new LocalBinder();
 
     @Override
     public IBinder onBind(Intent intent) {
-        if(messagesReceiver == null) {
-            messagesReceiver = new MessagesReceiver();
+        if(messagesHandler == null) {
+            messagesHandler = new MessagesHandler();
         }
 
         if(deviceComponentManager == null) {

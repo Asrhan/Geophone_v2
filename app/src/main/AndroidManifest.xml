@@ -22,8 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <receiver
-            android:name=".managers.message.MessagesReceiver"
-            class="com.example.flaforgue.geophone.managers.message.MessagesReceiver">
+            android:name=".managers.message.MessagesHandler"
+            class="com.example.flaforgue.geophone.managers.message.MessagesHandler">
             <intent-filter android:priority="0">
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>

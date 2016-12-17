@@ -18,7 +18,10 @@ import com.example.flaforgue.geophone.activities.HomeActivity;
 import com.example.flaforgue.geophone.activities.MapsActivity;
 import com.example.flaforgue.geophone.managers.DeviceComponentManager;
 
-public class MessagesReceiver extends BroadcastReceiver {
+import java.util.Calendar;
+import java.util.Date;
+
+public class MessagesHandler extends BroadcastReceiver {
 
     private final SmsManager smsManager = SmsManager.getDefault();
     private final String   ACTION_RECEIVE_SMS  = "android.provider.Telephony.SMS_RECEIVED";
@@ -56,7 +59,6 @@ public class MessagesReceiver extends BroadcastReceiver {
     }
 
     private void handleRequest(Context context, String phoneNumber, String messageBody) {
-        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         Location remoteLocation;
         Location currentLocation;
         Intent intentLocation;
@@ -71,14 +73,12 @@ public class MessagesReceiver extends BroadcastReceiver {
                 } else {
                     float distance = calculateDistance(remoteLocation, currentLocation);
                     if (distance <= 20) {
+                        this.enableComponentDependingOnParam(context);
                         this.smsManager.sendTextMessage(phoneNumber, null, MessageCode.SEND_LOCATION_CLOSE + ";", null, null);
-                        this.deviceComponentManager.turnOnFlash();
-                        this.deviceComponentManager.doVibrate();
-                        this.deviceComponentManager.playSound();
                         Intent intentFound = new Intent(context, CloseActivity.class);
                         intentFound.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         context.startActivity(intentFound);
-                    } else if (distance > 20 && distance <= 50000) {
+                    } else if (distance > 20 && distance <= 50) {
                         this.smsManager.sendTextMessage(phoneNumber, null, MessageCode.SEND_LOCATION_MIDDLE + ";" + calculateDirection(remoteLocation,currentLocation), null, null);
                     } else {
                         this.smsManager.sendTextMessage(phoneNumber, null, MessageCode.SEND_LOCATION_FAR + ";" + currentLocation.getLongitude() + ";" + currentLocation.getLatitude(), null, null);
@@ -134,5 +134,39 @@ public class MessagesReceiver extends BroadcastReceiver {
 
     private float calculateDirection(Location firstLoc, Location secondLoc) {
         return firstLoc.bearingTo(secondLoc);
+    }
+
+    private void enableComponentDependingOnParam(Context context) {
+        final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        boolean nightTimeEnabled = prefs.getBoolean("pref_switch_time", true);
+        boolean flashEnabled = prefs.getBoolean("pref_switch_flash", false);
+        String time = prefs.getString("pref_time","22:00");
+        Calendar currentTime = Calendar.getInstance();
+        int hour = currentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = currentTime.get(Calendar.MINUTE);
+
+        this.deviceComponentManager.doVibrate();
+
+        if (!nightTimeEnabled || !isTimePassed(time,hour,minute)) {
+            this.deviceComponentManager.playSound();
+            if(flashEnabled)
+                this.deviceComponentManager.turnOnFlash();
+        }
+        else if (nightTimeEnabled && isTimePassed(time,hour,minute))
+            this.deviceComponentManager.turnOnFlash();
+    }
+
+    private boolean isTimePassed(String time, int hour, int minute) {
+        int paramHour = Integer.parseInt(time.split(":")[0]);
+        int paramMinute = Integer.parseInt(time.split(":")[1]);
+        if(hour >= 7) {
+            if (hour < paramHour) {
+                return false;
+            } else if (hour == paramHour) {
+                return (minute > paramMinute);
+            }
+        }
+        return true;
+
     }
 }

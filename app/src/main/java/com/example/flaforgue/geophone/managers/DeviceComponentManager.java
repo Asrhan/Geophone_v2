@@ -2,20 +2,33 @@ package com.example.flaforgue.geophone.managers;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.flaforgue.geophone.R;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 /**
  * Created by Baptite_Portable on 29/11/2016.
@@ -28,15 +41,17 @@ public class DeviceComponentManager implements LocationListener{
     private static MediaPlayer mMediaPlayer;
     private static CameraManager mCameraManager = null;
     private static Context context = null;
+    private static SharedPreferences prefs;
 
 
     public DeviceComponentManager(Context c) {
 
         context = c;
+        prefs = PreferenceManager.getDefaultSharedPreferences(context);
         this.mLocationManager = (LocationManager) this.context.getSystemService(Context.LOCATION_SERVICE);
         mVibrate = (Vibrator) this.context.getSystemService(Context.VIBRATOR_SERVICE);
-        mMediaPlayer = MediaPlayer.create(context, R.raw.sound);
         mCameraManager = (CameraManager) this.context.getSystemService(Context.CAMERA_SERVICE);
+        mMediaPlayer = new MediaPlayer();
     }
 
     public Location getLocation() {
@@ -74,22 +89,22 @@ public class DeviceComponentManager implements LocationListener{
         if(GPSLocation != null && networkLocation != null) {
             if (GPSLocation.getAccuracy() > networkLocation.getAccuracy()) {
                 finalLocation = networkLocation;
-                Toast.makeText(this.context, R.string.net_loc, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, R.string.net_loc, Toast.LENGTH_LONG).show();
             } else {
                 finalLocation = GPSLocation;
-                Toast.makeText(this.context, R.string.gps_loc, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, R.string.gps_loc, Toast.LENGTH_LONG).show();
             }
         } else {
             if (GPSLocation != null) {
                 finalLocation = GPSLocation;
-                Toast.makeText(this.context, R.string.gps_loc, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, R.string.gps_loc, Toast.LENGTH_LONG).show();
             } else if (networkLocation != null) {
                 finalLocation = networkLocation;
-                Toast.makeText(this.context, R.string.net_loc, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, R.string.net_loc, Toast.LENGTH_LONG).show();
             }
         }
         if (finalLocation == null)
-            Toast.makeText(this.context, R.string.unk_loc, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, R.string.unk_loc, Toast.LENGTH_LONG).show();
 
         return finalLocation;
 
@@ -105,9 +120,15 @@ public class DeviceComponentManager implements LocationListener{
     }
 
     public static void playSound() {
+        Uri uriSound = Uri.parse(prefs.getString("pref_ringtone",""));
+        mMediaPlayer = MediaPlayer.create(context, uriSound);
+        if (mMediaPlayer == null) {
+            Toast.makeText(context, R.string.default_sound, Toast.LENGTH_LONG).show();
+            mMediaPlayer = MediaPlayer.create(context, R.raw.sound);
+        }
         mMediaPlayer.setVolume(1f,1f);
-        mMediaPlayer.start();
         mMediaPlayer.setLooping(true);
+        mMediaPlayer.start();
     }
 
     public static void stopSound() {
@@ -126,7 +147,7 @@ public class DeviceComponentManager implements LocationListener{
                 }
             }
             else {
-                //TODO
+
             }
         }
     }
