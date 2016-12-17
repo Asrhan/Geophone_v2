@@ -1,0 +1,110 @@
+<resources>
+    <string name="app_name">Geophone</string>
+    <string name="number">Numéro</string>
+    <string name="find">Localiser</string>
+    <string name="request_sent">La demande de localisation a été envoyée</string>
+    <string name="cancel">Annulation</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="here">Je suis là</string>
+    <string name="gps_loc">Localisation par GPS</string>
+    <string name="net_loc">Localisation par Réseau</string>
+    <string name="unk_loc">Localisation impossible</string>
+    <string name="getit">Je l\'ai !</string>
+    <string name="found_close">Le télépone a été localisé : le flash, le vibreur et la musique ont été déclenchés</string>
+    <string name="searching">Repositionnement des satellites...</string>
+    <string name="wrong_format">Le format du numéro est incorrect</string>
+
+
+    <string name="title_activity_settings">Paramètres</string>
+
+    <!-- Strings related to General -->
+    <string name="pref_header_general">General</string>
+    <string name="pref_cat_close_range">A courte portée</string>
+    <string name="pref_activate_flash">Activer le flash</string>
+    <string name="pref_message_title">Message à afficher</string>
+    <string name="pref_message_default_value">Je suis là</string>
+    <string name="pref_ring_title">Sonnerie</string>
+
+    <string name="pref_cat_time">Heure de nuit</string>
+    <string name="pref_enable_time">Activer l\'heure de nuit</string>
+    <string name="pref_enable_time_summary">Le flash sera actif et la musique inactive entre l\'heure indiquée et 07:00 AM</string>
+    <string name="pref_time">Heure de nuit</string>
+
+    <string name="pref_cat_archive">Historique</string>
+    <string name="pref_archive_title">Archiver les recherches</string>
+    <string name="pref_archive_summary">Les demandes de localisation et leur réponse seront stockées dans le téléphone</string>
+
+    <string name="pref_cat_security">Sécurité</string>
+    <string name="pref_password_title">Code PIN</string>
+    <string name="pref_password_default_value">0000</string>
+
+
+    <!-- Strings related to General -->
+    <string name="pref_header_contact">Contact</string>
+    <string name="pref_contact_name">Nom du contact</string>
+    <string name="pref_contact_number">Numéro du contact</string>
+
+    <string name="pref_cat_contact_1">Contact n°1</string>
+    <string name="pref_cat_contact_2">Contact n°2</string>
+    <string name="pref_cat_contact_3">Contact n°3</string>
+    <string name="pref_cat_contact_4">Contact n°4</string>
+
+
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+</resources>

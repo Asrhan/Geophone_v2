@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.flaforgue.geophone.activities.HomeActivity">
+
+    <Button
+        android:text="@string/find"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/findBtn"
+        android:textSize="18sp"
+        android:layout_above="@+id/menuBtn"
+        android:layout_alignStart="@+id/numberInput"
+        android:layout_marginBottom="15dp"
+        android:layout_alignEnd="@+id/numberInput" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="phone"
+        android:ems="10"
+        android:id="@+id/numberInput"
+        android:background="@android:drawable/toast_frame"
+        android:hint="@string/number"
+        android:textSize="24sp"
+        android:textColorLink="@android:color/background_light"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="61dp"
+        android:layout_alignBottom="@+id/findBtn"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/firstBtn"
+        android:textSize="12sp"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="20dp"
+        android:layout_alignStart="@+id/numberInput"
+        android:visibility="gone"
+        android:fontFamily="sans-serif-medium" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/secondBtn"
+        android:textSize="12sp"
+        android:layout_alignBaseline="@+id/firstBtn"
+        android:layout_alignEnd="@+id/numberInput"
+        android:visibility="gone" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/thirdBtn"
+        android:textSize="12sp"
+        android:layout_alignStart="@+id/firstBtn"
+        android:layout_below="@+id/firstBtn"
+        android:visibility="gone" />
+
+    <Button
+        android:text="Button"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/fourthBtn"
+        android:textSize="12sp"
+        android:layout_alignBaseline="@+id/thirdBtn"
+        android:layout_alignStart="@+id/secondBtn"
+        android:layout_below="@+id/secondBtn"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/dim_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        android:visibility="gone" >
+
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/menu"
+        android:layout_marginBottom="42dp"
+        android:id="@+id/menuBtn"
+        app:backgroundTint="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/map"
+        android:layout_above="@+id/menuBtn"
+        android:layout_toEndOf="@+id/menuBtn"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="36dp"
+        android:id="@+id/mapBtn"
+        android:visibility="gone"
+        app:backgroundTint="@color/colorPrimary" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:fabSize="normal"
+        app:srcCompat="@drawable/gear"
+        android:layout_above="@+id/menuBtn"
+        android:layout_toStartOf="@+id/menuBtn"
+        android:layout_marginStart="31dp"
+        android:layout_marginBottom="36dp"
+        android:id="@+id/optionsBtn"
+        android:visibility="gone"
+        app:backgroundTint="@color/colorPrimary" />
+
+</RelativeLayout>
