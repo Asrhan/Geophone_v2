@@ -160,7 +160,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="4f65cf5dda21d707ae91a2f3d1d03cd714735f1e">
+        sha1="7264c8f8eded1b156278d38167927896cc1c5760">
         <dex dex="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_2862bda52344badf70eacd68a7c1a41f47a1e97e\classes.dex" />
     </item>
     <item
@@ -408,15 +408,6 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database-connection\9.6.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="ac8365c87591065db07f7bac8551504504832cd4">
-        <dex dex="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-connection-9.6.1_ba922a5e38ee7d1ed1f918ec1c160f031776cfd9\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\9.6.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
@@ -426,12 +417,12 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\9.6.1\jars\classes.jar"
+        jar="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\exploded-aar\com.google.firebase\firebase-database-connection\9.6.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="ad7706f8bb4a985656a8d2142f74021c8b0e03d8">
-        <dex dex="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gcm-9.6.1_cd8238c9b8d31719da20b532910fc8f918a7958e\classes.dex" />
+        sha1="ac8365c87591065db07f7bac8551504504832cd4">
+        <dex dex="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-database-connection-9.6.1_ba922a5e38ee7d1ed1f918ec1c160f031776cfd9\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -441,6 +432,15 @@
         revision="24.0.2"
         sha1="80dd8bea08bc5fe10b10a3243b8279c856ccc690">
         <dex dex="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.firebase-firebase-messaging-9.6.1_e997b6408e489371660af92dc8a1af4c8a77f9e4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\9.6.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="ad7706f8bb4a985656a8d2142f74021c8b0e03d8">
+        <dex dex="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-gcm-9.6.1_cd8238c9b8d31719da20b532910fc8f918a7958e\classes.dex" />
     </item>
     <item
         is-multidex="true"
@@ -538,7 +538,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="458e0e0175bfb204424eaf46458a0e47ab4a1634">
+        sha1="230d7a4d2811bdce744429f4b6b806ff0991844b">
         <dex dex="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_95baa5886c84b93f2e3cfa8b0374a26e08615a77\classes.dex" />
     </item>
     <item
@@ -606,21 +606,21 @@
     </item>
     <item
         is-multidex="true"
-        jar="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
-        jumboMode="true"
-        optimize="true"
-        revision="24.0.2"
-        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
-        <dex dex="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_eba9e11d64fc1462d3bb6c000bed21226779dcdb\classes.dex" />
-    </item>
-    <item
-        is-multidex="true"
         jar="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\9.6.1\jars\classes.jar"
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
         sha1="0cae6511c5705869cacf199f8abb0ea84cd10157">
         <dex dex="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.google.android.gms-play-services-vision-9.6.1_fb67b2f93f7daf16348d7cd1c8a9b149d7c79d07\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.1\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="24.0.2"
+        sha1="0ecb4b595fa0f0f8018a149ace3ea6525624f94e">
+        <dex dex="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\transforms\dex\debug\folders\1000\10\com.android.support-support-compat-24.2.1_eba9e11d64fc1462d3bb6c000bed21226779dcdb\classes.dex" />
     </item>
     <item
         is-multidex="true"

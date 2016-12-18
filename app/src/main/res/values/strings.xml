@@ -14,6 +14,10 @@
     <string name="searching">Repositionnement des satellites...</string>
     <string name="wrong_format">Le format du numéro est incorrect</string>
     <string name="default_sound">Son incompatible, lecture de la sonnerie par défaut</string>
+    <string name="permission_needed">L\'application ne fonctionnera pas correctement sans cette persmission</string>
+    <string name="favourite_title">Allez dans les paramètres pour ajouter des recherches rapides (Contacts). Un redémarrage
+        de l\'application est nécessaire pour prendre en compte les modifications.</string>
+
 
 
 

@@ -125,4 +125,18 @@
         android:visibility="gone"
         app:backgroundTint="@color/colorPrimary" />
 
+    <TextView
+        android:text="@string/favourite_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mapBtn"
+        android:layout_marginTop="90dp"
+        android:layout_marginRight="62dp"
+        android:layout_marginLeft="62dp"
+        android:id="@+id/txtAddContact"
+        android:textAlignment="center"
+        android:textColor="?android:attr/colorPrimaryDark"
+        android:textStyle="normal|bold"
+        android:textSize="18sp" />
+
 </RelativeLayout>
