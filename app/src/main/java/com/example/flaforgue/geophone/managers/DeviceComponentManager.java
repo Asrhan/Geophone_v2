@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.hardware.Camera;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.location.Location;
@@ -39,30 +40,30 @@ public class DeviceComponentManager implements LocationListener{
     private final LocationManager mLocationManager;
     private static Vibrator mVibrate;
     private static MediaPlayer mMediaPlayer;
+    private static AudioManager mAudioManager;
     private static CameraManager mCameraManager = null;
     private static Context context = null;
     private static SharedPreferences prefs;
-
+    private static int originalVolume;
+    private static Camera cam; //Pour les version antérieurs à Android Marshmallow
 
     public DeviceComponentManager(Context c) {
-
         context = c;
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
         this.mLocationManager = (LocationManager) this.context.getSystemService(Context.LOCATION_SERVICE);
         mVibrate = (Vibrator) this.context.getSystemService(Context.VIBRATOR_SERVICE);
         mCameraManager = (CameraManager) this.context.getSystemService(Context.CAMERA_SERVICE);
+        mAudioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         mMediaPlayer = new MediaPlayer();
     }
 
+    /**
+     * Récupération de la position du téléphone en fonction du réseau ou du GPS
+     * On renvoit alors la méthode la plus précise
+     * @return Retourne un object Location
+     */
     public Location getLocation() {
         if (ActivityCompat.checkSelfPermission(this.context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this.context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return null;
         }
 
@@ -110,31 +111,58 @@ public class DeviceComponentManager implements LocationListener{
 
     }
 
+    /**
+     * Declenchement du vibreur du téléphone selon un pattern précis
+     * 1 seconde de vibration
+     * 0.5 seconde d'arrêt
+     */
     public static void doVibrate() {
         long[] pattern = {0,1000,500};
         mVibrate.vibrate(pattern,0);
     }
 
+    /**
+     * Arret du vibreur
+     */
     public static void stopVibrate() {
         mVibrate.cancel();
     }
 
+    /**
+     * Lancement de la sonnerie du téléphone
+     * Si la musique sélectionnée en paramètre n'est pas lisible
+     * On lance la musique installé dans l'application
+     */
     public static void playSound() {
+        originalVolume = mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0);
         Uri uriSound = Uri.parse(prefs.getString("pref_ringtone",""));
-        mMediaPlayer = MediaPlayer.create(context, uriSound);
-        if (mMediaPlayer == null) {
+        try {
+            mMediaPlayer.setDataSource(context, uriSound);
+            mMediaPlayer.prepare();
+        } catch (IOException e) {
             Toast.makeText(context, R.string.default_sound, Toast.LENGTH_LONG).show();
             mMediaPlayer = MediaPlayer.create(context, R.raw.sound);
         }
-        mMediaPlayer.setVolume(1f,1f);
+        if(mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC) != 0)
+            mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        else
+            mMediaPlayer.setVolume(1f,1f);
         mMediaPlayer.setLooping(true);
         mMediaPlayer.start();
     }
 
+    /**
+     * Arrêt de la musique
+     */
     public static void stopSound() {
-        mMediaPlayer.stop();
+        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC, originalVolume, 0);
+        mMediaPlayer.release();
     }
 
+    /**
+     * Déclenchement du flash lorsqu'il est disponible
+     */
     public static void turnOnFlash() {
         if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -147,11 +175,18 @@ public class DeviceComponentManager implements LocationListener{
                 }
             }
             else {
-
+                cam = Camera.open();
+                Camera.Parameters p = cam.getParameters();
+                p.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
+                cam.setParameters(p);
+                cam.startPreview();
             }
         }
     }
 
+    /**
+     * Arrêt du flash
+     */
     public static void turnOffFlash() {
         if (context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -164,7 +199,8 @@ public class DeviceComponentManager implements LocationListener{
                 }
             }
             else {
-                //TODO
+                cam.stopPreview();
+                cam.release();
             }
         }
     }

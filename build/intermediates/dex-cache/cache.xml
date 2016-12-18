@@ -160,7 +160,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="7264c8f8eded1b156278d38167927896cc1c5760">
+        sha1="cbabf47bafe2af90856ddc4ce04600628aaf1c1e">
         <dex dex="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run-bootstrap_2862bda52344badf70eacd68a7c1a41f47a1e97e\classes.dex" />
     </item>
     <item
@@ -538,7 +538,7 @@
         jumboMode="true"
         optimize="true"
         revision="24.0.2"
-        sha1="230d7a4d2811bdce744429f4b6b806ff0991844b">
+        sha1="0276b6a0cc411d927cae014143212c4cf99a4e84">
         <dex dex="C:\Users\Baptite_Portable\Documents\AndroidProjects\Geophone\app\build\intermediates\transforms\dex\debug\folders\1000\10\instant-run_95baa5886c84b93f2e3cfa8b0374a26e08615a77\classes.dex" />
     </item>
     <item

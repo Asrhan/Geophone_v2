@@ -17,6 +17,10 @@ public class QuickFindBtnClickListenerManager implements View.OnClickListener {
         this.number = num;
     }
 
+    /**
+     * Lancement de la localisation
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         this.parentActivity.localize(number);

@@ -7,6 +7,9 @@ import android.os.Bundle;
 import com.example.flaforgue.geophone.managers.clicklisteners.HomeBtnClickListenerManager;
 import com.example.flaforgue.geophone.R;
 
+/**
+ * Sert à afficher une activity en attendant la fin de la recherche
+ */
 public class RadarActivity extends AppCompatActivity {
 
     private FloatingActionButton homeBtn;
@@ -17,7 +20,6 @@ public class RadarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_radar);
 
         this.homeBtn = (FloatingActionButton) this.findViewById(R.id.homeBtn);
-
         this.homeBtn.setOnClickListener(new HomeBtnClickListenerManager(this));
     }
 }

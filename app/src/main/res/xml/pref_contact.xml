@@ -52,7 +52,6 @@
             android:key="pref_contact_name_3"
             android:dependency="pref_contact_number_2" />
         <EditTextPreference
-            android:defaultValue="Default value"
             android:selectAllOnFocus="true"
             android:inputType="number"
             android:singleLine="true"

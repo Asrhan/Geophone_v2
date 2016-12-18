@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Location;
+import android.widget.Toast;
+
+import com.example.flaforgue.geophone.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,7 +29,7 @@ public class SQLManager extends SQLiteOpenHelper {
     private static final String COLUMN_LATITUDE = "latitude";
 
     private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME
-            + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," + COLUMN_NUMBER + " INTEGER, " + COLUMN_LONGITUDE + " FLOAT," + COLUMN_LATITUDE + " FLOAT)";
+            + "(" + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," + COLUMN_NUMBER + " VARCHAR(12), " + COLUMN_LONGITUDE + " FLOAT," + COLUMN_LATITUDE + " FLOAT)";
 
     public SQLManager(Context context) {
         super(context, TABLE_NAME, null, VERSION);
@@ -48,27 +51,14 @@ public class SQLManager extends SQLiteOpenHelper {
         super.onDowngrade(db,oldVersion,newVersion);
     }
 
-    public void fillTable(HashMap<String,List<Location>> m) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-
-        // insert row
-        for(String s : m.keySet()) {
-            for (Location l : m.get(s)) {
-                values.put(COLUMN_NUMBER, s);
-                values.put(COLUMN_LONGITUDE, l.getLongitude());
-                values.put(COLUMN_LATITUDE, l.getLatitude());
-                db.insert(TABLE_NAME, null, values);
-            }
-        }
-
-    }
-
+    /**
+     * Récupération des données stockées dans la base de données interne
+     * @return Retourne une HashMap avec la liste des numéros, mappée avec la liste des résultats des recherches
+     */
     public HashMap<String,List<Location>> getData() {
         HashMap<String,List<Location>> map = new HashMap<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cNumber = db.rawQuery("SELECT DISTINCT" + COLUMN_NUMBER + " FROM " + TABLE_NAME, null);
+        Cursor cNumber = db.rawQuery("SELECT " + COLUMN_NUMBER + " FROM " + TABLE_NAME, null);
         if(cNumber.moveToFirst()){
             List<Location> locations = new ArrayList<>();
             do{
@@ -90,5 +80,19 @@ public class SQLManager extends SQLiteOpenHelper {
         cNumber.close();
         db.close();
         return map;
+    }
+
+    /**
+     * Insertion du résultat d'une recherche
+     * @param number Le numéro recherché
+     * @param loc Le résultat de la recherche
+     */
+    public void insertLocation(String number, Location loc) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "INSERT INTO " + TABLE_NAME + " ("
+                + COLUMN_NUMBER + ", " + COLUMN_LONGITUDE + ", " + COLUMN_LATITUDE + ") Values ('"
+                + number + "', '" + loc.getLongitude() + "', '" + loc.getLatitude() + "')";
+        db.execSQL(query);
+
     }
 }

@@ -16,6 +16,10 @@ public class HomeBtnClickListenerManager implements View.OnClickListener {
         this.parentActivity = parentActivity;
     }
 
+    /**
+     * Retour à la page d'accueil lorsqu'on clique sur le bouton
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         Intent intentSettingsActivity = new Intent(this.parentActivity, HomeActivity.class);

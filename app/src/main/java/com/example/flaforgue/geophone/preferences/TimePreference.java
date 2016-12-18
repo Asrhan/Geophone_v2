@@ -14,7 +14,11 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.TimePicker;
 
-// Based on http://stackoverflow.com/a/7484289/922168
+/**
+ * Source du code : StackOverFlow
+ * Code modifié pour afficher le format voulu
+ * Based on http://stackoverflow.com/a/7484289/922168
+ */
 
 public class TimePreference extends DialogPreference {
     private int mHour = 0;

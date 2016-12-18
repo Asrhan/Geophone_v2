@@ -17,7 +17,6 @@ public class CloseSearcherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_close_searcher);
 
         this.homeBtn = (FloatingActionButton) this.findViewById(R.id.homeBtn);
-
         this.homeBtn.setOnClickListener(new HomeBtnClickListenerManager(this));
     }
 }

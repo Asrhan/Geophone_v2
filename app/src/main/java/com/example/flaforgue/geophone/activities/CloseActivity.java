@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.example.flaforgue.geophone.managers.DeviceComponentManager;
 import com.example.flaforgue.geophone.R;
+import com.example.flaforgue.geophone.managers.clicklisteners.GetItBtnClickListenerManager;
 
 public class CloseActivity extends AppCompatActivity {
 
@@ -27,16 +28,10 @@ public class CloseActivity extends AppCompatActivity {
         this.getItBtn = (Button) findViewById(R.id.getItBtn);
         this.message = (TextView) findViewById(R.id.txtMessage);
 
+        //Affichage du message personnalisé si configuré
         this.message.setText(prefs.getString("pref_message","Je suis là"));
 
-        this.getItBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DeviceComponentManager.turnOffFlash();
-                DeviceComponentManager.stopVibrate();
-                DeviceComponentManager.stopSound();
-                finishAffinity();
-            }
-        });
+        //Fermeture de l'application
+        this.getItBtn.setOnClickListener(new GetItBtnClickListenerManager(this));
     }
 }

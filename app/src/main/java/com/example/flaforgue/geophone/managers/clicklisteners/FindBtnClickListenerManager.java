@@ -16,6 +16,10 @@ public class FindBtnClickListenerManager implements View.OnClickListener {
         this.parentActivity = parentActivity;
     }
 
+    /**
+     * Lancement de la localisation lorsqu'on clique sur le bouton
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         String destination = this.parentActivity.getNumberInputValue();
